@@ -118,13 +118,13 @@ class AboutDialog {
 			productName =
 				typeof brandProductName === 'string' && brandProductName.length > 0
 					? brandProductName
-					: 'Collabora Online Development Edition (unbranded)';
+					: 'EidoVault';
 		}
 
 		const productURL =
 			typeof brandProductURL === 'string' && brandProductURL.length > 0
 				? brandProductURL
-				: 'https://collaboraonline.github.io/';
+				: 'https://agentfaktory.ai/';
 
 		const productNameElement = content.querySelector(
 			'#product-name',
@@ -159,25 +159,12 @@ class AboutDialog {
 			);
 		}
 
-		// COOLWSD version
-		elements.coolwsdVersion.textContent = info.coolwsdVersion;
-		this.appendSpanAndLink(
-			elements.coolwsdVersion,
-			' git hash:\xA0',
-			`https://github.com/CollaboraOnline/online/commits/${info.coolwsdHash}`,
-			info.coolwsdHash,
-			info.wsdOptions,
-		);
+		// Editor service version
+		elements.coolwsdVersion.textContent = info.coolwsdVersion || '';
 
-		// LOKit version
-		const lokitVersionText = `${info.lokitVersionName} ${info.lokitVersionNumber}${info.lokitVersionSuffix}`;
+		// Document engine version
+		const lokitVersionText = `${info.lokitVersionNumber}${info.lokitVersionSuffix}`;
 		elements.lokitVersion.textContent = lokitVersionText;
-		this.appendSpanAndLink(
-			elements.lokitVersion,
-			' git hash:\xA0',
-			`https://gerrit.collaboraoffice.com/plugins/gitiles/core/+log/${info.lokitHash}`,
-			info.lokitHash.substring(0, 10),
-		);
 
 		// Update lokit-extra position if exists
 		const lokitExtra = content.querySelector('#lokit-extra');
@@ -232,9 +219,7 @@ class AboutDialog {
 		// Copyright and vendor
 		const span = document.createElement('span');
 		span.setAttribute('dir', 'ltr');
-		span.textContent = _(
-			`Copyright © ${window.copyrightYear}, ${window.vendor}.`,
-		);
+		span.textContent = _('Developed by AgentFaktory');
 		elements.copyright.appendChild(span);
 
 		if (window.socketProxy) {
@@ -369,14 +354,8 @@ class AboutDialog {
 			}
 		};
 
-		let coolwsdLine = info.coolwsdVersion;
-		coolwsdLine += ` (git hash: ${info.coolwsdHash} ${info.wsdOptions})`;
-		addLine('COOLWSD version', coolwsdLine);
-
-		const lokitVersionText = `${info.lokitVersionName} ${info.lokitVersionNumber}${info.lokitVersionSuffix}`;
-		let lokitLine = lokitVersionText;
-		lokitLine += ` (git hash: ${info.lokitHash.substring(0, 10)})`;
-		addLine('LOKit version', lokitLine);
+		addLine('Editor service version', info.coolwsdVersion || '');
+		addLine('Document engine version', `${info.lokitVersionNumber}${info.lokitVersionSuffix}`);
 		addLine('Served by', info.osInfo);
 		addLine('Server ID', info.serverId);
 		addLine('WOPI host', window.wopiHostId);
@@ -457,7 +436,7 @@ class AboutDialog {
 		const coolwsdLabel = AboutDialog.createElement('div', {
 			id: 'coolwsd-version-label',
 		});
-		coolwsdLabel.textContent = _('COOLWSD version:');
+		coolwsdLabel.textContent = _('Editor service version:');
 		infoDiv.appendChild(coolwsdLabel);
 
 		const coolwsdVersionContainer = AboutDialog.createElement('div', {
@@ -477,7 +456,7 @@ class AboutDialog {
 		const lokitLabel = AboutDialog.createElement('div', {
 			id: 'lokit-version-label',
 		});
-		lokitLabel.textContent = _('LOKit version:');
+		lokitLabel.textContent = _('Document engine version:');
 		infoDiv.appendChild(lokitLabel);
 
 		const lokitVersionContainer = AboutDialog.createElement('div', {

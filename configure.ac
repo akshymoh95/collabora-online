@@ -909,7 +909,7 @@ AC_SUBST(ENABLE_ANDROIDAPP)
 AM_CONDITIONAL([ENABLE_ANDROIDAPP], [test "$ENABLE_ANDROIDAPP" = "true"])
 AC_SUBST(ANDROID_PACKAGE_NAME)
 
-APP_NAME="Collabora Online Development Edition"
+APP_NAME="EidoVault"
 if test -n "$with_app_name"; then
    APP_NAME="$with_app_name"
 fi
@@ -939,7 +939,7 @@ else
 fi
 AC_SUBST(VENDOR)
 
-INFO_URL='https://collaboraonline.github.io/'
+INFO_URL='https://agentfaktory.ai/'
 if test -n "$with_info_url" -a "$with_info_url" != "no"; then
     INFO_URL="$with_info_url"
 fi
@@ -1058,8 +1058,8 @@ else
     WELCOME_CONFIG_FRAGMENT="<welcome>
       <enable type=\"bool\" desc=\"Controls whether the welcome screen should be shown to the users on new install and updates. When enabled, your custom welcome screen must be created at /usr/share/coolwsd/browser/dist/welcome/welcome.html.\" default=\"false\">false</enable>
     </welcome>"
-    CONFIG_INTERFACE_FRAGMENT="<brandProductName desc=\"Change the displayed name the application will have for the user.\" type=\"string\"></brandProductName>
-    <brandProductURL desc=\"Change the product URL, empty makes disable the link\" type=\"string\">https://www.collaboraonline.com</brandProductURL>
+    CONFIG_INTERFACE_FRAGMENT="<brandProductName desc=\"Change the displayed name the application will have for the user.\" type=\"string\">EidoVault</brandProductName>
+    <brandProductURL desc=\"Change the product URL, empty makes disable the link\" type=\"string\">https://agentfaktory.ai</brandProductURL>
     <logoURL desc=\"Change the URL of the logo used by Collabora Online, use none to hide it.\" type=\"string\"></logoURL>"
 fi
 
